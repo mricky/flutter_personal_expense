@@ -33,10 +33,9 @@ class MyHomePage extends StatelessWidget {
               elevation: 5,
             ),
           ),
-          Card(
-            color: Colors.red ,
-            child: Text("List OF TX"),
-          )
+          Column(children: transaction.map((tx){
+            return Card(child: Text(tx.title),);
+          }).toList(),),
         ],
        ),
       ),

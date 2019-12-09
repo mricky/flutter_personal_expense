@@ -5,10 +5,25 @@ import 'package:flutter_personal_expense/widgets/transaction_list.dart';
 import './widgets/new_transaction.dart';
 import './models/transaction.dart';
 void main() => runApp(MaterialApp(
-  home: MyHomePage(),
+  home: MyApp(),
 ));
 
 
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Personal Expenses',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        accentColor: Colors.amber,
+
+        
+      ),
+      home: MyHomePage(),
+    );
+  }
+}
 class MyHomePage extends StatefulWidget {
 
   @override
@@ -54,9 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter App',
-      home:  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text("Personal Expense"),
         actions: <Widget>[
@@ -86,10 +99,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
+        
         child: Icon(Icons.add),
         onPressed: ()=> _startAddNewTransaction(context)
         ),
-      ),
     );
   }
 }

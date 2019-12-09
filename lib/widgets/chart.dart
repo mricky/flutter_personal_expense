@@ -8,7 +8,9 @@ class Chart extends StatelessWidget {
   Chart(this.recentTransactions);
   List<Map<String, Object>> get groupedTransactionValues{
      return List.generate(7, (index){
-        final weekDay = DateTime.now().subtract(Duration(days: index));
+        final weekDay = DateTime.now().subtract(
+          Duration(days: index)
+        );
         //return {'day': DateFormat.E().format(weekDay),'amount':9.99};
         var totalSum = 0.0;
         for(var i = 0; i < recentTransactions.length; i++){
@@ -48,8 +50,8 @@ class Chart extends StatelessWidget {
                child: ChartBar(
                data['day'], 
                data['amount'],
-               (data['amount'] as double) / totalSpending,
-               //totalSpending == 0.0 ? 0.0 : (data['amount'] as double) / totalSpending
+               //(data['amount'] as double) / totalSpending,
+               totalSpending == 0.0 ? 0.0 : (data['amount'] as double) / totalSpending
                ),
            );
             }).toList(),

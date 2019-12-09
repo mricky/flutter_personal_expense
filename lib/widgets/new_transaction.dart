@@ -15,15 +15,19 @@ final titleController = TextEditingController();
 final amountController = TextEditingController();
 DateTime _selectedDate;
 void _submitData(){
-  final enteredTitle = titleController.text;
-  final enteredAmount = double.parse(amountController.text);
-  if(enteredTitle.isEmpty || enteredAmount <= 0){
+  if(amountController.text.isEmpty){
     return;
   }
- 
+  final enteredTitle = titleController.text;
+  final enteredAmount = double.parse(amountController.text);
+  if(enteredTitle.isEmpty || enteredAmount <= 0 || _selectedDate == null){
+     return;
+  }
+  
   widget.addTx(
     enteredTitle,  
     enteredAmount,
+    _selectedDate,
   );
   Navigator.of(context).pop();
  

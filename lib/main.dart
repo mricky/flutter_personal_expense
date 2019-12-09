@@ -8,15 +8,18 @@ void main() => runApp(MaterialApp(
 
 
 class MyHomePage extends StatelessWidget {
- 
-  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter App',
       home:  Scaffold(
       appBar: AppBar(
-        title: Text("Flutter App"),
+        title: Text("Personal Expense"),
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.add), 
+          onPressed: (){},),
+        ],
       ),
       body: Container(
         height: 600,
@@ -36,6 +39,10 @@ class MyHomePage extends StatelessWidget {
           ],
          ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: (){}),
       ),
     );
   }

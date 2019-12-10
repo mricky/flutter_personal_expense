@@ -5,9 +5,8 @@ import 'package:flutter_personal_expense/widgets/transaction_list.dart';
 import './widgets/new_transaction.dart';
 import './widgets/chart.dart';
 import './models/transaction.dart';
-void main() => runApp(MaterialApp(
-  home: MyApp(),
-));
+void main() => runApp(MyApp()
+);
 
 
 class MyApp extends StatelessWidget {
@@ -122,12 +121,12 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               // 0.4 = 40% dari total size scrreen
               height: (MediaQuery.of(context).size.height - 
-                  appBar.preferredSize.height - MediaQuery.of(context).padding.top) * 0.4,
+                  appBar.preferredSize.height - MediaQuery.of(context).padding.top) * 0.3,
               child: Chart(_recentTransactions)
             ),
             Container(
               height: (MediaQuery.of(context).size.height -
-                  appBar.preferredSize.height - MediaQuery.of(context).padding.top) * 0.6, 
+                  appBar.preferredSize.height - MediaQuery.of(context).padding.top) * 0.7, 
               child: TransactionList(_transactions, _deleteTransaction)
             ),
           

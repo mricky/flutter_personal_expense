@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -110,7 +111,19 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final isLandscape = mediaQuery.orientation == Orientation.landscape;
-    final appBar = AppBar(
+    final PreferredSizeWidget appBar = Platform.isIOS ? CupertinoNavigationBar(
+        middle: Text(
+          'Personal Expense',
+          ),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+          GestureDetector(
+            child: Icon(CupertinoIcons.add),
+            onTap: () => _startAddNewTransaction(context),
+          )
+        ],),
+    ) : AppBar(
         title: Text("Personal Expense",
 
         ),
@@ -128,9 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   0.7, 
               child: TransactionList(_transactions, _deleteTransaction)
             );
-    return Scaffold(
-      appBar: appBar,
-      body: SingleChildScrollView(
+      final pageBody = SingleChildScrollView(
         child: Column(
          // mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -170,14 +181,21 @@ class _MyHomePageState extends State<MyHomePage> {
               txtListWidget
           ],
          ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Platform.isIOS 
-        ? Container()
-        : FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: ()=> _startAddNewTransaction(context)
-        ),
+      );
+    return Platform.isIOS ?
+       CupertinoPageScaffold(
+          child: pageBody,
+          navigationBar: appBar,
+       ) : Scaffold(
+          appBar: appBar,
+          body: pageBody,
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: Platform.isIOS 
+            ? Container()
+            : FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: ()=> _startAddNewTransaction(context)
+            ),
     );
   }
 }
